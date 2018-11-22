@@ -1,0 +1,51 @@
+// https://palantir.github.io/tslint/
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "radix": false,
+    "no-unused-variable": true,
+    "no-var-requires": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "no-console": [
+      false,
+      "dir",
+      "log",
+      "error",
+      "warn"
+    ],
+    "adjacent-overload-signatures": true,
+    "interface-name": [
+      false,
+      "never-prefix"
+    ],
+    "member-access": [
+      true,
+      "check-accessor"
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": "fields-first"
+      }
+    ],
+    "object-literal-sort-keys": false,
+    "max-classes-per-file": [
+      true,
+      10
+    ],
+    "arrow-parens": false,
+    "variable-name": [
+      false,
+      "allow-leading-underscore"
+    ],
+    "ordered-imports": [
+      false
+    ],
+    "no-shadowed-variable": false,
+    "max-line-length": [true, 200]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "lottie-compress",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "tsc",
+    "dev:w": "tsc --watch",
+    "build": "tsc",
+    "test": "egg-bin test --typescript",
+    "test:w": "egg-bin test --typescript --watch test/**/*.test.ts --watch-extensions ts",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:babel": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "await-stream-ready": "^1.0.1",
+    "imagemin": "^6.0.0",
+    "imagemin-pngquant": "^6.0.0",
+    "mz-modules": "^2.1.0",
+    "stream-to-buf": "^1.0.0",
+    "typescript": "^3.1.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/node": "^10.12.9",
+    "commander": "^2.19.0",
+    "egg-bin": "^4.9.0",
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.1",
+    "ts-loader": "^5.3.0",
+    "tslib": "^1.9.3",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.5"
+  }
+}
