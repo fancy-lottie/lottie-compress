@@ -1,7 +1,7 @@
 {
   "name": "lottie-compress",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "lottie compress",
   "main": "lib/index.js",
   "scripts": {
     "dev": "tsc",
@@ -15,8 +15,16 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["lottie", "tiny", "lottie compress"],
+  "author": "chenpx976",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/Lottie-Lint/lottie-compress"
+	},
+  "contributors": [{
+    "name": "chenpx976",
+    "email": "chenpx976@gmail.com"
+  }],
   "license": "ISC",
   "dependencies": {
     "await-stream-ready": "^1.0.1",

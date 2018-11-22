@@ -7,7 +7,7 @@ const data = fs.readFileSync(path.resolve(__dirname, 'fixtures/rockball.json')).
 
 describe('LottieCompress', () => {
   it('it is ok', async () => {
-    const lottieCompress = new LottieCompress({ lottieJson: JSON.parse(data)});
+    const lottieCompress = new LottieCompress(JSON.parse(data));
     const ret = await lottieCompress.execute();
     console.log('ret', ret);
   });

@@ -7,22 +7,23 @@ import * as imageminPngquant from 'imagemin-pngquant';
 // import streamTobuffer from 'stream-to-buf';
 // const awaitWriteStream = require('await-stream-ready').write;
 
-interface ILottieCompress {
-  lottieJson: any;
-  options?: any;
-}
+// interface ILottieCompress {
+//   lottieJson: any;
+//   options?: any;
+// }
 
 class LottieCompress {
 
   public lottieJson: any;
   public options: any;
-  constructor(params: ILottieCompress) {
-    this.lottieJson = params.lottieJson || {
+
+  constructor(lottieJson: any, options?: any) {
+    this.lottieJson = lottieJson || {
       error: '初始化失败',
     };
     this.options = {
       quality: '75-90',
-      ...params.options,
+      ...options,
     };
   }
 
