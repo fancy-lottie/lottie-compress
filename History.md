@@ -1,4 +1,9 @@
 
+1.0.3 / 2018-11-23
+==================
+
+  * feat: Refactoring interface parameters && Support the json data and string
+
 1.0.2 / 2018-11-22
 ==================
 

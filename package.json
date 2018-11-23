@@ -1,6 +1,6 @@
 {
   "name": "lottie-compress",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "lottie compress",
   "main": "lib/index.js",
   "scripts": {
