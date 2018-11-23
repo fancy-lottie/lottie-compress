@@ -12,7 +12,7 @@ npm i -S lottie-compress
 import LottieCompress from 'lottie-compress';
 
 async () => {
-  const lottieCompress = new LottieCompress(JSON.parse(data));
+  const lottieCompress = new LottieCompress(lottieJson);
   const ret = await lottieCompress.execute();
   console.log('ret', ret);
 }
@@ -20,4 +20,5 @@ async () => {
 
 ## Options
 
-- `lottieJson` Lottie file json data, Please transform the data `JSON.parse(data)` before use.
+- `lottieJson` Lottie file json data, Support the json data and string.
+- `options` not support.
