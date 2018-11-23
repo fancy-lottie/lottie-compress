@@ -1,3 +1,6 @@
+[![NPM](https://nodei.co/npm/lottie-compress.png)](https://nodei.co/npm/lottie-compress/)
+[![Build Status](https://travis-ci.org/Lottie-Lint/lottie-compress.svg?branch=master)](https://travis-ci.org/Lottie-Lint/lottie-compress)
+
 # lottie compress
 
 ## Install
