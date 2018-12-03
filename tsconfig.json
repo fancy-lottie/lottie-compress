@@ -19,7 +19,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "inlineSourceMap": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "declaration": true,
     "outDir": "lib"
   },

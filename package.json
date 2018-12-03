@@ -10,31 +10,36 @@
     "test": "egg-bin test --typescript",
     "test:w": "egg-bin test --typescript --watch test/**/*.test.ts --watch-extensions ts"
   },
-  "keywords": ["lottie", "tiny", "lottie compress"],
+  "keywords": [
+    "lottie",
+    "tiny",
+    "lottie compress"
+  ],
   "author": "chenpx976",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/Lottie-Lint/lottie-compress"
-	},
-  "contributors": [{
-    "name": "chenpx976",
-    "email": "chenpx976@gmail.com"
-  }],
+    "type": "git",
+    "url": "https://github.com/Lottie-Lint/lottie-compress"
+  },
+  "contributors": [
+    {
+      "name": "chenpx976",
+      "email": "chenpx976@gmail.com"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
+    "assert": "^1.4.1",
     "await-stream-ready": "^1.0.1",
     "imagemin": "^6.0.0",
     "imagemin-pngquant": "^6.0.0",
     "mz-modules": "^2.1.0",
-    "stream-to-buf": "^1.0.0",
-    "typescript": "^3.1.6"
+    "stream-to-buf": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
     "egg-bin": "^4.9.0",
     "ts-loader": "^5.3.0",
-    "tslib": "^1.9.3",
     "tslint": "^5.11.0",
-    "typescript": "^3.1.5"
+    "typescript": "^3.2.1"
   }
 }
