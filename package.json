@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "lottie compress",
   "main": "lib/index.js",
+  "files": [ "lib" ],
   "scripts": {
     "dev": "tsc",
     "dev:w": "tsc --watch",

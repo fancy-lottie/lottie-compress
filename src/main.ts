@@ -8,14 +8,14 @@ import * as assert from 'assert';
 // import { write as awaitWriteStream } from 'await-stream-ready';
 // import streamTobuffer from 'stream-to-buf';
 // const awaitWriteStream = require('await-stream-ready').write;
-import * as util from 'util';
+// import * as util from 'util';
 
 // interface ILottieCompress {
 //   lottieJson: any;
 //   options?: any;
 // }
 
-class LottieCompress {
+export default class LottieCompress {
 
   public lottieJson: any;
   public options: any;
@@ -490,5 +490,3 @@ class LottieCompress {
     return resultobj;
   }
 }
-
-export default LottieCompress;
