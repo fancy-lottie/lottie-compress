@@ -14,11 +14,11 @@ npm i -S lottie-compress
 ```js
 import LottieCompress from 'lottie-compress';
 
-async () => {
-  const lottieCompress = new LottieCompress(lottieJson);
+(async () => {
+  const lottieCompress = new LottieCompress(data);
   const ret = await lottieCompress.execute();
-  console.log('ret', ret);
-}
+  assert(ret.tiny === '75');
+})();
 ```
 
 ## Options
