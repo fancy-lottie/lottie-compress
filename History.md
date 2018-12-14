@@ -1,4 +1,13 @@
 
+1.0.6 / 2018-12-14
+==================
+
+**features**
+  * [[`aa39de9`](http://github.com/Lottie-Lint/lottie-compress/commit/aa39de97cbf93cbd5a4ade952d77bb4bb94d1e47)] - feat: remove commonjs support (chenpx976 <<chenpx976@gmail.com>>)
+
+**others**
+  * [[`2575e84`](http://github.com/Lottie-Lint/lottie-compress/commit/2575e84fbae3a5ccfce85a9618f426b8ed02af10)] - chore: update README (chenpx976 <<chenpx976@gmail.com>>)
+
 1.0.5 / 2018-12-03
 ==================
 
