@@ -10,6 +10,7 @@
     "dev": "tsc",
     "dev:w": "tsc --watch",
     "build": "tsc",
+    "example": "node example/test.js",
     "test": "egg-bin test --typescript",
     "test:w": "egg-bin test --typescript --watch test/**/*.test.ts --watch-extensions ts"
   },

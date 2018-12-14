@@ -1,5 +1,5 @@
 const assert = require('assert');
-const LottieCompress = require('../lib/index');
+const LottieCompress = require('../lib/index').default;
 const fs = require('fs');
 const path = require('path');
 
