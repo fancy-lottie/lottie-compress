@@ -1,4 +1,10 @@
 
+1.0.7 / 2019-03-18
+==================
+
+**fixes**
+  * [[`d444e2e`](http://github.com/Lottie-Lint/lottie-compress/commit/d444e2e0996fced7bbec9b4c23566e3af4744ea0)] - fix: color (chenpx976 <<chenpx976@gmail.com>>)
+
 1.0.6 / 2018-12-14
 ==================
 
