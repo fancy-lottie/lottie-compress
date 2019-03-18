@@ -340,7 +340,7 @@ export default class LottieCompress {
         const innerItem = innerObj[attr];
         if (isColor && attr === 'k') {
           // 对所有颜色的属性进行剥离
-          if (parentAttr === 'c' || parentAttr === 'v' && Array.isArray(innerItem)) {
+          if ((parentAttr === 'c' || parentAttr === 'v') && Array.isArray(innerItem)) {
             innerObj[attr] = innerItem.map(item => {
               return this._cutColorNumber(item);
             });
