@@ -1,4 +1,10 @@
 
+1.0.10 / 2019-05-17
+==================
+
+**features**
+  * [[`65418b9`](http://github.com/Lottie-Lint/lottie-compress/commit/65418b9bee919d52b491e2a92e642d4b258534b2)] - feat: keep nm (天辙 <<weiesky.wangc@alibaba-inc.com>>)
+
 1.0.9 / 2019-05-17
 ==================
 
