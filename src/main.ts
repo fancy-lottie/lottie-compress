@@ -100,7 +100,7 @@ export default class LottieCompress {
     miniFile.tiny = '75'; // 给文件打哥标，证明是压缩过的，并且写入压缩比例
     miniFile.fr = Math.round(miniFile.fr); // 部分lottie文件导出的bug 作为工具也得清洗
     miniFile.op = Math.round(miniFile.op); // 部分lottie文件导出的bug 作为工具也得清洗
-    miniFile = this.attrZip(miniFile, ['nm']); // 缩短属性值
+    // miniFile = this.attrZip(miniFile, ['nm']); // 缩短属性值
     miniFile = this.attrEqualZip(miniFile, 'id:refId'); // 缩短关联属性值
     miniFile = this.attrMiniNumber(miniFile, ['t', 'sr', 'to', 'ti', 'color', 'ip', 'op', 'st', 's', 'e']); // 缩小属性精度
     miniFile = this.deleteAttr(miniFile, ['n', 'mn']); // 删除属性
