@@ -115,7 +115,7 @@ export default class LottieCompress {
    * @return {string} 压缩以后的图片
    */
   public async tinybase64(stream, fileds) {
-    const bufferString = await this.getStream(stream);
+    const bufferString: any = await this.getStream(stream);
     const _bufferString = bufferString.toString();
     const base64str = _bufferString.slice(_bufferString.indexOf('base64,') + 7);
     const imageData = new Buffer(base64str, 'base64');
@@ -128,7 +128,7 @@ export default class LottieCompress {
   }
 
   public async getJsonStream(stream) {
-    const data = await this.getStream(stream);
+    const data: any = await this.getStream(stream);
     try {
       return JSON.parse(data.toString());
     } catch (e) {
