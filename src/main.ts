@@ -101,7 +101,7 @@ export default class LottieCompress {
    */
   public getMiniAttr() {
     let miniFile = JSON.parse(JSON.stringify(this.lottieJson));
-    miniFile.tiny = this.options.quality[0]; // 给文件打哥标，证明是压缩过的，并且写入压缩比例
+    miniFile.tiny = this.options.quality[0]; // 给文件打标，证明是压缩过的，并且写入压缩比例
     miniFile.fr = Math.round(miniFile.fr); // 部分lottie文件导出的bug 作为工具也得清洗
     miniFile.op = Math.round(miniFile.op); // 部分lottie文件导出的bug 作为工具也得清洗
     // miniFile = this.attrZip(miniFile, ['nm']); // 缩短属性值
