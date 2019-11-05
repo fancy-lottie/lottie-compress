@@ -1,6 +1,6 @@
 // import * as fs from 'fs';
 import * as imagemin from 'imagemin';
-import * as imageminPngquant from 'imagemin-pngquant';
+import imageminPngquant from 'imagemin-pngquant';
 import * as assert from 'assert';
 
 // import * as path from 'path';
@@ -15,12 +15,16 @@ import * as assert from 'assert';
 //   options?: any;
 // }
 
+interface IOptions {
+  quality: [number, number];
+}
+
 export default class LottieCompress {
 
   public lottieJson: any;
-  public options: any;
+  public options: IOptions;
 
-  constructor(lottieJson: any, options?: any) {
+  constructor(lottieJson: any, options?: IOptions) {
     let _lottieJson;
     if (typeof lottieJson === 'string') {
       try {
@@ -36,7 +40,7 @@ export default class LottieCompress {
     assert(typeof _lottieJson === 'object', 'Parameters of illegal');
     this.lottieJson = _lottieJson;
     this.options = {
-      quality: '75-90',
+      quality: [0.75, 0.9],
       ...options,
     };
   }
@@ -97,7 +101,7 @@ export default class LottieCompress {
    */
   public getMiniAttr() {
     let miniFile = JSON.parse(JSON.stringify(this.lottieJson));
-    miniFile.tiny = '75'; // 给文件打哥标，证明是压缩过的，并且写入压缩比例
+    miniFile.tiny = this.options.quality[0]; // 给文件打哥标，证明是压缩过的，并且写入压缩比例
     miniFile.fr = Math.round(miniFile.fr); // 部分lottie文件导出的bug 作为工具也得清洗
     miniFile.op = Math.round(miniFile.op); // 部分lottie文件导出的bug 作为工具也得清洗
     // miniFile = this.attrZip(miniFile, ['nm']); // 缩短属性值
@@ -139,9 +143,9 @@ export default class LottieCompress {
     }
   }
 
-  public async getStream(stream) {
+  public async getStream(stream): Promise<Buffer> {
     return await new Promise((resolve) => {
-      let data: string = ''; // 创建一个buffer用于存储读取完的信息
+      let data: any = ''; // 创建一个buffer用于存储读取完的信息
       const buffers: any[] = []; // 创建一个数组，用于存储每一个流读取的信息
       let nread = 0; // 用于记录读取全部内容的长度
       stream.on('data', chuck => { // 给stream绑定data事件，用于按流读取文件内容

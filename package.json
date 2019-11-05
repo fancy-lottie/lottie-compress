@@ -34,8 +34,8 @@
   "dependencies": {
     "assert": "^1.4.1",
     "await-stream-ready": "^1.0.1",
-    "imagemin": "^6.0.0",
-    "imagemin-pngquant": "^6.0.0",
+    "imagemin": "^7.0.0",
+    "imagemin-pngquant": "^8.0.0",
     "mz-modules": "^2.1.0",
     "stream-to-buf": "^1.0.0"
   },
