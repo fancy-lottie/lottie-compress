@@ -23,4 +23,11 @@ describe('LottieCompress', () => {
     const ret = await lottieCompress.execute();
     assert(ret.tiny === 0.5);
   });
+  it('lottieJson is lottie string and tiny string', async () => {
+    const lottieCompress = new LottieCompress(data, {
+      quality: '50-75',
+    });
+    const ret = await lottieCompress.execute();
+    assert(ret.tiny === 0.5);
+  });
 });

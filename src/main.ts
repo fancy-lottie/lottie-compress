@@ -24,7 +24,7 @@ export default class LottieCompress {
   public lottieJson: any;
   public options: IOptions;
 
-  constructor(lottieJson: any, options?: IOptions) {
+  constructor(lottieJson: any, options?: any) {
     let _lottieJson;
     if (typeof lottieJson === 'string') {
       try {
@@ -39,6 +39,10 @@ export default class LottieCompress {
     // TODO: 增加lint
     assert(typeof _lottieJson === 'object', 'Parameters of illegal');
     this.lottieJson = _lottieJson;
+    if (options && options.quality && !Array.isArray(options.quality)) {
+      const [min = 75, max = 90] = options.quality.split('-');
+      options.quality = [parseInt(min) / 100, parseInt(max) / 100];
+    }
     this.options = {
       quality: [0.75, 0.9],
       ...options,

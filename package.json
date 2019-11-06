@@ -12,6 +12,7 @@
     "build": "tsc",
     "example": "node example/test.js",
     "test": "egg-bin test --typescript",
+    "test-travis": "egg-bin cov --typescript",
     "test:w": "egg-bin test --typescript --watch test/**/*.test.ts --watch-extensions ts"
   },
   "keywords": [
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
+    "@types/mocha": "^5.2.7",
     "egg-bin": "^4.9.0",
     "ts-loader": "^5.3.0",
     "tslint": "^5.11.0",
