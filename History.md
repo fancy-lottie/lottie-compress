@@ -1,4 +1,10 @@
 
+1.1.0 / 2019-11-18
+==================
+
+**features**
+  * [[`9d41285`](http://github.com/Lottie-Lint/lottie-compress/commit/9d412854be70493bbeb540f1f1e0e5bb2e0c4f8a)] - feat: 升级图片压缩依赖 (#2) (习常 <<chenpx976@gmail.com>>)
+
 1.0.10 / 2019-05-17
 ==================
 
