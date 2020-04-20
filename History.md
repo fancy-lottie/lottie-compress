@@ -1,4 +1,10 @@
 
+1.1.1 / 2020-04-20
+==================
+
+**features**
+  * [[`70cdc7d`](http://github.com/Lottie-Lint/lottie-compress/commit/70cdc7dc5d202179c5f7792639afb8e9ab7e5d89)] - feat: 对参数为100-100的请求，图片不做任何处理 (#4) (王超 <<sbxdwz@qq.com>>)
+
 1.1.0 / 2019-11-18
 ==================
 
