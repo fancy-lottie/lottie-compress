@@ -63,7 +63,10 @@ export default class LottieCompress {
    */
   public async miniBase64() {
     const assetsPromise = this.lottieJson.assets.map(async asset => {
-      if (!asset.u && !asset.p) { return asset; }
+      const quality = this.options.quality;
+      // 非图片类型 | 压缩参数为原图类型 则直接返回所有值
+      if (!asset.u && !asset.p
+        || quality && quality[0] === 1 && quality[1] === 1) { return asset; }
 
       let imageData: any = null;
       let extname: string = 'png';
@@ -81,7 +84,7 @@ export default class LottieCompress {
 
       const newBuf: any = await imagemin.buffer(imageData, {
         plugins: [
-          imageminPngquant({ quality: this.options.quality }),
+          imageminPngquant({ quality }),
         ],
       });
 
