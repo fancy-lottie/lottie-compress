@@ -2,6 +2,8 @@
 import * as imagemin from 'imagemin';
 import imageminPngquant from 'imagemin-pngquant';
 import * as assert from 'assert';
+import tinify from 'tinify';
+
 
 // import * as path from 'path';
 // import { mkdirp, rimraf } from 'mz-modules';
@@ -17,6 +19,7 @@ import * as assert from 'assert';
 
 interface IOptions {
   quality: [number, number];
+  tinypngKey?: string;  // tinypng api key，如果有那么会使用 API 来压缩图片
 }
 
 export default class LottieCompress {
@@ -82,11 +85,18 @@ export default class LottieCompress {
         return asset; // 相对路径 (zip类型才会走这个逻辑)
       }
 
-      const newBuf: any = await imagemin.buffer(imageData, {
-        plugins: [
-          imageminPngquant({ quality }),
-        ],
-      });
+      let newBuf: any;
+      if (this.options.tinypngKey) {
+        tinify.key = this.options.tinypngKey;
+        const source = tinify.fromBuffer(imageData);
+        newBuf = await source.toBuffer();
+      } else {
+        newBuf = await imagemin.buffer(imageData, {
+          plugins: [
+            imageminPngquant({ quality }),
+          ],
+        });
+      }
 
       return {
         ...asset,

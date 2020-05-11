@@ -30,4 +30,12 @@ describe('LottieCompress', () => {
     const ret = await lottieCompress.execute();
     assert(ret.tiny === 0.5);
   });
+
+  it('lottieJson is lottie string and tiny string with tinypng', async () => {
+    const lottieCompress = new LottieCompress(data, {
+      tinypngKey: 'zBPwXmVrwtvgJkws5qHmy6wYR6n5NXs2'
+    });
+    const ret = await lottieCompress.execute();
+    assert(ret.tiny === 0.75);
+  });
 });

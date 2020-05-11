@@ -38,7 +38,8 @@
     "imagemin": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
     "mz-modules": "^2.1.0",
-    "stream-to-buf": "^1.0.0"
+    "stream-to-buf": "^1.0.0",
+    "tinify": "^1.6.0-beta.2"
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
