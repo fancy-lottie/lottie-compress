@@ -1,4 +1,13 @@
 
+1.1.2 / 2020-05-11
+==================
+
+**features**
+  * [[`f19a6af`](http://github.com/Lottie-Lint/lottie-compress/commit/f19a6af56392f6ba0fe218af96cd2bfcc6b6a4a4)] - feat: 增加 tinypng 压缩支持 (#6) (Chaos（拾锋） <<edokeh@163.com>>)
+
+**others**
+  * [[`0350b60`](http://github.com/Lottie-Lint/lottie-compress/commit/0350b607b34b87049443b49499731fb02cc7925b)] - chore: add leaks action (#5) (Ink <<chceyes@gmail.com>>)
+
 1.1.1 / 2020-04-20
 ==================
 
