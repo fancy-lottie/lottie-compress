@@ -1,4 +1,3 @@
-import { describe, it } from 'mocha';
 import * as assert from 'assert';
 import LottieCompress from '../src/index';
 import * as fs from 'fs';
