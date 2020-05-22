@@ -79,7 +79,7 @@ export default class LottieCompress {
         const base64str = imagestring.slice(imagestring.indexOf('base64,') + 7);
         extname = imagestring.slice(imagestring.indexOf('data:image/') + 11, imagestring.indexOf(';base64'));
         imageData = Buffer.from(base64str, 'base64');
-      } else if (/^((https?):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(imagestring)) {
+      } else if (imagestring.startsWith('http')) {
         return asset; // 远程访问 暂时不对远程访问的路径做压缩
       } else {
         return asset; // 相对路径 (zip类型才会走这个逻辑)
