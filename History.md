@@ -1,4 +1,13 @@
 
+1.1.3 / 2020-05-22
+==================
+
+**fixes**
+  * [[`225f3ed`](http://github.com/Lottie-Lint/lottie-compress/commit/225f3ed0d49c55e07c02eb59da6b5b6a37dfb07f)] - fix: 修复资源图片 url 判断 (#8) (习常 <<chenpx976@gmail.com>>)
+
+**others**
+  * [[`220f370`](http://github.com/Lottie-Lint/lottie-compress/commit/220f370c81d0d9634f9842c2407503f82dd79777)] - chore: 直接构建出 async 函数 (#7) (Ink <<chceyes@gmail.com>>)
+
 1.1.2 / 2020-05-11
 ==================
 
