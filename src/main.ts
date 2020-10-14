@@ -126,6 +126,7 @@ export default class LottieCompress {
     miniFile = this.attrMiniNumber(miniFile, ['t', 'sr', 'to', 'ti', 'color', 'ip', 'op', 'st', 's', 'e']); // 缩小属性精度
     miniFile = this.deleteAttr(miniFile, ['n', 'mn']); // 删除属性
     miniFile = this.combNumber(miniFile); // 数字类型的相近值合并，该压缩建议开放高级配置，不做默认
+    miniFile = this.fixAttrIndIsUndefined(miniFile); // 修复json中layer缺乏ind的问题，避免部分ios播放器闪退
     return miniFile;
   }
 
@@ -509,5 +510,28 @@ export default class LottieCompress {
   public deleteAttr(obj, attrNames) {
     const resultobj = this._resetAttr(obj, attrNames);
     return resultobj;
+  }
+
+  /**
+   * 修复json中layer缺乏ind的问题，避免部分ios播放器闪退
+   * @param {object} obj lottie.json
+   * @return {object} returnobj lottie.json
+   */
+  public fixAttrIndIsUndefined(obj) {
+    obj.layers.forEach((layer, index) => {
+      if (layer.ind === undefined) {
+        layer.ind = index + 1;
+      }
+    });
+    obj.assets.forEach(asset => {
+      if (asset.layers) {
+        asset.layers.forEach((layer, index) => {
+          if (layer.ind === undefined) {
+            layer.ind = index + 1;
+          }
+        });
+      }
+    });
+    return obj;
   }
 }
