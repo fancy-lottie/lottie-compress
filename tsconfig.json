@@ -6,7 +6,6 @@
     "noImplicitAny": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "charset": "utf8",
     // "allowJs": true,
     "pretty": true,
     // "noEmitOnError": false,

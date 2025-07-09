@@ -37,4 +37,24 @@ describe('LottieCompress', () => {
     const ret = await lottieCompress.execute();
     assert(ret.tiny === 0.75);
   });
+  it('lottieJson traceform into webp', async () => {
+    const lottieCompress = new LottieCompress(data, {
+      quality: '50-75',
+      traceformInto: 'webp'
+    });
+    const ret = await lottieCompress.execute();
+    const imagestring = ret.assets[0].p;
+    const extname = imagestring.slice(imagestring.indexOf('data:image/') + 11, imagestring.indexOf(';base64'));
+    assert(extname === 'webp');
+  });
+  it('lottieJson traceform into avif', async () => {
+    const lottieCompress = new LottieCompress(data, {
+      quality: '50-75',
+      traceformInto: 'avif'
+    });
+    const ret = await lottieCompress.execute();
+    const imagestring = ret.assets[0].p;
+    const extname = imagestring.slice(imagestring.indexOf('data:image/') + 11, imagestring.indexOf(';base64'));
+    assert(extname === 'avif');
+  });
 });

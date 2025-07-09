@@ -1,4 +1,3 @@
-// https://palantir.github.io/tslint/
 {
   "extends": "tslint:recommended",
   "rules": {
