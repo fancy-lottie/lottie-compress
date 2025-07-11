@@ -20,7 +20,14 @@ interface IOptions {
   tinypngKey?: string;  // tinypng api key
 }
 
+interface IOptions {
+  quality: [number, number]; // '55-75';
+  traceformInto?: string, // 'png'，'webp'，'avif'
+  tinypngKey?: string;  // tinypng api key
+}
+
 (async () => {
+  const lottieCompress = new LottieCompress(data, options: IOptions);
   const lottieCompress = new LottieCompress(data, options: IOptions);
   const ret = await lottieCompress.execute();
 })();
