@@ -1,6 +1,6 @@
 {
   "name": "lottie-compress",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "lottie compress",
   "main": "lib/index.js",
   "files": [
@@ -24,12 +24,16 @@
   "author": "chenpx976",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lottie-Lint/lottie-compress"
+    "url": "https://github.com/fancy-lottie/lottie-compress"
   },
   "contributors": [
     {
       "name": "chenpx976",
       "email": "chenpx976@gmail.com"
+    },
+    {
+      "name": "weiesky",
+      "email": "sbxdwz@qq.com"
     }
   ],
   "license": "ISC",
