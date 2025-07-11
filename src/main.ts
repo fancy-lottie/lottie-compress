@@ -7,12 +7,12 @@ import * as sharp from 'sharp';
 
 // 洛丽塔设置的6档次图片优化参数，供参考用
 // const enumQualityLevel = {
-//   1: '10-30', // 20
-//   2: '25-45', // 35
-//   3: '40-60', // 50
-//   4: '55-75', // 65 默认选项是这个
-//   5: '80-100', // 90
-//   9: '100-100', // 100
+//   1: [0.1, 0.3], // 20%
+//   2: [0.25, 0.45], // 35%
+//   3: [0.4, 0.6], // 50%
+//   4: [0.55, 0.75], // 65% 默认选项是这个
+//   5: [0.8, 1], // 90% 
+//   9: [1, 1]', // 100%
 // };
 
 interface IOptions {
@@ -41,12 +41,13 @@ export default class LottieCompress {
     // TODO: 增加lint
     assert(typeof _lottieJson === 'object', 'Parameters of illegal');
     this.lottieJson = _lottieJson;
+    // 对数组参数的兼容，允许参数为[0.5, 0.6] 或者 '50-60'
     if (options && options.quality && !Array.isArray(options.quality)) {
       const [min = 75, max = 90] = options.quality.split('-');
       options.quality = [parseInt(min) / 100, parseInt(max) / 100];
     }
     this.options = {
-      quality: [0.75, 0.9],
+      quality: [0.55, 0.75], // 如果quality参数不提交，默认给个优化范围
       ...options,
     };
   }
@@ -68,13 +69,13 @@ export default class LottieCompress {
       const quality = this.options.quality;
       // 非图片类型 | 压缩参数为原图类型 则直接返回所有值
       if (!asset.u && !asset.p
-        || quality && quality[0] === 1 && quality[1] === 1) { return asset; }
+        || quality && quality[0] === 1 && quality[1] === 1 && !this.options.traceformInto) { return asset; }
 
       let imageData: any = null;
       let extname: string = 'png';
       const imagestring = asset.p;
       if (imagestring.includes('base64,')) {
-        // 图片是 base64 格式
+        // 提取base64的图片转化成Buffer();
         const base64str = imagestring.slice(imagestring.indexOf('base64,') + 7);
         extname = imagestring.slice(imagestring.indexOf('data:image/') + 11, imagestring.indexOf(';base64'));
         imageData = Buffer.from(base64str, 'base64');
@@ -93,16 +94,16 @@ export default class LottieCompress {
         // 先对参数做一轮处理，兼容之前api的参数格式
         const otherQuality = Math.floor((quality[0] + quality[1]) * 50);
         // avif校准的魔法参数，保证效果上跟其他类型一致，avif的25质量约等于png的55-75，以50为封顶线
-        const avifQuality = Math.floor((quality[0] / 2));
+        const avifQuality = Math.floor((quality[0] * 50));
         // webp的魔法参数，保证效果上跟其他类型一致，webp的70质量约等于png的55-75;
-        const webpQuality = quality[0] >= 85 ? quality[0] : Math.floor((quality[0] + 15));
-    
-        // 如果类型需要做一轮转化，那么就先执行转化
+        const webpQuality = quality[0] >= 0.8 ? 100 : Math.floor((quality[0] * 124));
+
+        // 如果是强制类型转化，那么就先执行转化，同时把优化一起处理了
         if (this.options.traceformInto) {
           switch (this.options.traceformInto) {
             case 'png':
                 // png压缩用的不是sharp，所以先转化一轮
-                if (extname !== 'png'){
+                if (extname !== 'png') {
                   newBuf = await sharp(imageData).png().toBuffer();
                 } else {
                   newBuf = imageData;
@@ -138,7 +139,7 @@ export default class LottieCompress {
               break;
           }
         } else {
-          // 类型不做强制转化的情况下
+          // 类型不做强制转化的情况下，优化步骤还是要继续做的
           switch (extname) {
             case 'png':
                 // png的压缩
