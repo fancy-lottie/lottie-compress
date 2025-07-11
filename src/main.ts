@@ -5,6 +5,16 @@ import * as assert from 'assert';
 import tinify from 'tinify';
 import * as sharp from 'sharp';
 
+// 洛丽塔设置的6档次图片优化参数，供参考用
+// const enumQualityLevel = {
+//   1: '10-30', // 20
+//   2: '25-45', // 35
+//   3: '40-60', // 50
+//   4: '55-75', // 65 默认选项是这个
+//   5: '80-100', // 90
+//   9: '100-100', // 100
+// };
+
 interface IOptions {
   quality: [number, number];
   traceformInto?: string, // png，webp，avif 目前主要支持这三个类型互相转换
@@ -80,56 +90,92 @@ export default class LottieCompress {
         const source = tinify.fromBuffer(imageData);
         newBuf = await source.toBuffer();
       } else {
-        let otherQuality = Math.floor((quality[0] + quality[1]) * 50);
+        // 先对参数做一轮处理，兼容之前api的参数格式
+        const otherQuality = Math.floor((quality[0] + quality[1]) * 50);
+        // avif校准的魔法参数，保证效果上跟其他类型一致，avif的25质量约等于png的55-75，以50为封顶线
+        const avifQuality = Math.floor((quality[0] / 2));
+        // webp的魔法参数，保证效果上跟其他类型一致，webp的70质量约等于png的55-75;
+        const webpQuality = quality[0] >= 85 ? quality[0] : Math.floor((quality[0] + 15));
+    
         // 如果类型需要做一轮转化，那么就先执行转化
         if (this.options.traceformInto) {
-          if (extname!== 'webp' && this.options.traceformInto === 'webp') {
-            if (otherQuality === 65) {
-              // 魔法数字，这里校准一下webp的压缩质量差，webp的70质量约等于png的55-75;
-              otherQuality = Math.floor(otherQuality + 5);
-            }
-            newBuf = await sharp(imageData).webp({
-              quality: otherQuality,
-              alphaQuality: otherQuality,
-            }).toBuffer();
-            extname = 'webp';
+          switch (this.options.traceformInto) {
+            case 'png':
+                // png压缩用的不是sharp，所以先转化一轮
+                if (extname !== 'png'){
+                  newBuf = await sharp(imageData).png().toBuffer();
+                } else {
+                  newBuf = imageData;
+                }
+                newBuf = await imagemin.buffer(newBuf, {
+                  plugins: [
+                    imageminPngquant({ quality }),
+                  ],
+                });
+                extname = 'png';
+              break;
+            case 'webp':
+                newBuf = await sharp(imageData).webp({
+                  quality: webpQuality,
+                  alphaQuality: webpQuality,
+                }).toBuffer();
+                extname = 'webp';
+              break;
+            case 'avif':
+                newBuf = await sharp(imageData).avif({
+                  quality: avifQuality,
+                }).toBuffer();
+                extname = 'avif';
+              break;
+            case 'jpeg':
+                newBuf = await sharp(imageData).jpeg({
+                  quality: otherQuality,
+                }).toBuffer();
+                extname = 'jpeg';
+              break;
+            default:
+                newBuf = imageData;
+              break;
           }
-          if (extname!== 'avif' && this.options.traceformInto === 'avif') {
-            if (otherQuality <= 65) {
-              // 魔法数字，这里校准一下avif的压缩质量差，webp的25质量约等于png的55-75;
-              otherQuality = otherQuality - 15 > 1 ? otherQuality - 15 : 1;
-              // 魔法数字，avif的优化参数以50为封顶线
-              otherQuality = Math.floor(otherQuality / 2);
-            }
-            newBuf = await sharp(imageData).avif({
-              quality: otherQuality,
-            }).toBuffer();
-            extname = 'avif';
+        } else {
+          // 类型不做强制转化的情况下
+          switch (extname) {
+            case 'png':
+                // png的压缩
+                newBuf = await imagemin.buffer(imageData, {
+                  plugins: [
+                    imageminPngquant({ quality }),
+                  ],
+                });
+              break;
+            case 'webp':
+                // webp的压缩
+                newBuf = await sharp(imageData).webp({
+                  quality: webpQuality,
+                }).toBuffer();
+              break;
+            case 'avif':
+                // avif的压缩
+                newBuf = await sharp(imageData).avif({
+                  quality: avifQuality,
+                }).toBuffer();
+              break;
+            case 'jpg':
+                // jpg压缩
+                newBuf = await sharp(imageData).jpeg({
+                  quality: otherQuality,
+                }).toBuffer();
+              break;
+            case 'jpeg':
+                // jpeg压缩
+                newBuf = await sharp(imageData).jpeg({
+                  quality: otherQuality,
+                }).toBuffer();
+              break;
+            default:
+                newBuf = imageData;
+              break;
           }
-          if (extname!== 'png' && this.options.traceformInto === 'png') {
-            newBuf = await sharp(imageData).png().toBuffer();
-            extname = 'png';
-          }
-        }
-        // 工具考虑兼容性，默认仍然是png，如果原始类型是png且没有强制转化类型，或者转化类型是png的话，png需要另外走一个工具做压缩
-        if (extname === 'png' && !this.options.traceformInto || this.options.traceformInto === 'png') {
-          newBuf = await imagemin.buffer(imageData, {
-            plugins: [
-              imageminPngquant({ quality }),
-            ],
-          });
-        }
-        // webp的压缩
-        if (extname === 'webp') {
-          newBuf = await sharp(imageData).webp({
-            quality: otherQuality,
-          }).toBuffer();
-        }
-        // avif的压缩
-        if (extname === 'avif') {
-          newBuf = await sharp(imageData).avif({
-            quality: otherQuality,
-          }).toBuffer();
         }
       }
 
