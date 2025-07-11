@@ -15,7 +15,7 @@ npm i -S lottie-compress
 import LottieCompress from 'lottie-compress';
 
 interface IOptions {
-  quality: [number, number]; // '55-75';
+  quality: [number, number]; // [0.55, 0.75];
   traceformInto?: string, // 'png'，'webp'，'avif'
   tinypngKey?: string;  // tinypng api key
 }

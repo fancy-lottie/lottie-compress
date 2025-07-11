@@ -15,19 +15,12 @@ npm i -S lottie-compress
 import LottieCompress from 'lottie-compress';
 
 interface IOptions {
-  quality: [number, number]; // '55-75';
-  traceformInto?: string, // 'png'，'webp'，'avif'
-  tinypngKey?: string;  // tinypng api key
-}
-
-interface IOptions {
-  quality: [number, number]; // '55-75';
+  quality: [number, number]; // [0.55, 0.75];
   traceformInto?: string, // 'png'，'webp'，'avif'
   tinypngKey?: string;  // tinypng api key
 }
 
 (async () => {
-  const lottieCompress = new LottieCompress(data, options: IOptions);
   const lottieCompress = new LottieCompress(data, options: IOptions);
   const ret = await lottieCompress.execute();
 })();
@@ -39,8 +32,6 @@ interface IOptions {
 - `options` quality, traceformInto, tinypngKey
 
 
-
-
 ## Description
 
 lottie-compress is a tool library for lottie volume compression. The internal functions include lottie's string cropping and image volume optimization, as well as automatic solutions to some compatibility issues.
@@ -49,9 +40,7 @@ If you want to use the compression function directly online, you can directly us
 Lolita's internal part of lottie optimization function is not in lottie-compress, but lottie-compress already includes the core capabilities.
 
 Experience sharing:
-
 1. lottie-compress can optimize the size of strings in pure vector files, but according to the zip caliber, the compression rate is only about 5% to 15%. I personally think that vector files are unnecessary and do not need to be compressed;
-
 2. The main benefits of lottie-compress's compression come from base64 images, providing compression of png, webp, avif, and jpeg. It is currently recommended to use the webp compression mode, which can reduce the size of png exported by AE to 20% to 30%, which is very profitable!
 3. In actual applications, you may encounter performance problems. You can consider using lottie-lint for testing (Lolita provides this capability);
 
