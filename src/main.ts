@@ -18,7 +18,6 @@ import * as sharp from 'sharp';
 interface IOptions {
   quality: [number, number];
   traceformInto?: string, // png，webp，avif 目前主要支持这三个类型互相转换
-  traceformInto?: string, // png，webp，avif 目前主要支持这三个类型互相转换
   tinypngKey?: string;  // tinypng api key，如果有那么会使用 API 来压缩图片
 }
 

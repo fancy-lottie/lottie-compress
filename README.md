@@ -41,11 +41,22 @@ interface IOptions {
 
 
 
-## 简体中文
+## Description
 
-lottie-compress是lottie体积压缩的工具库。内部功能包含lottie的字符串裁剪和图片体积优化，以及自动化的解决部分兼容性问题。
+lottie-compress is a tool library for lottie volume compression. The internal functions include lottie's string cropping and image volume optimization, as well as automatic solutions to some compatibility issues.
 
-如果想直接在线用压缩功能，可以直接使用蚂蚁集团提供的在线压缩工具：https://design.alipay.com/lolita；
-洛丽塔内部部分lottie优化功能不在lottie-compress中，但lottie-compress已经包含了核心能力。
+If you want to use the compression function directly online, you can directly use the online compression tool provided by Ant Group: https://design.alipay.com/lolita;
+Lolita's internal part of lottie optimization function is not in lottie-compress, but lottie-compress already includes the core capabilities.
+
+Experience sharing:
+
+1. lottie-compress can optimize the size of strings in pure vector files, but according to the zip caliber, the compression rate is only about 5% to 15%. I personally think that vector files are unnecessary and do not need to be compressed;
+
+2. The main benefits of lottie-compress's compression come from base64 images, providing compression of png, webp, avif, and jpeg. It is currently recommended to use the webp compression mode, which can reduce the size of png exported by AE to 20% to 30%, which is very profitable!
+3. In actual applications, you may encounter performance problems. You can consider using lottie-lint for testing (Lolita provides this capability);
+
+Lolita: https://design.alipay.com/lolita
+1. Online compression and performance testing tools, which are convenient for you to use directly when you don’t want to deploy a warehouse;
+2. Lolita does not provide an English version for the time being. If you are a user outside of China, you can use Google Translate without any impact;
 
 
