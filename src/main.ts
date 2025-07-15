@@ -101,6 +101,30 @@ export default class LottieCompress {
         // 如果是强制类型转化，那么就先执行转化，同时把优化一起处理了
         if (this.options.traceformInto) {
           switch (this.options.traceformInto) {
+            case 'pngMixWebp':
+                let newPngBuf = imageData;
+                let newWebpBuf = imageData;
+                if (extname === 'png') {
+                  newPngBuf = await imagemin.buffer(imageData, {
+                    plugins: [
+                      imageminPngquant({ quality }),
+                    ],
+                  });
+                } else {
+                  newPngBuf = await sharp(imageData).png().toBuffer();
+                  newPngBuf = await imagemin.buffer(newPngBuf, {
+                    plugins: [
+                      imageminPngquant({ quality }),
+                    ],
+                  });
+                }
+                newWebpBuf = await sharp(imageData).webp({
+                  quality: webpQuality,
+                  alphaQuality: webpQuality,
+                }).toBuffer();
+                newBuf = newWebpBuf.length < newPngBuf.length ? newWebpBuf : newPngBuf;
+                extname = newWebpBuf.length < newPngBuf.length ? 'webp' : 'png';
+              break;
             case 'png':
                 // png压缩用的不是sharp，所以先转化一轮
                 if (extname !== 'png') {
