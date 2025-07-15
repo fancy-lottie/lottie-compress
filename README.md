@@ -1,3 +1,5 @@
+[中文](README.zh.md) 
+
 [![NPM](https://nodei.co/npm/lottie-compress.png)](https://nodei.co/npm/lottie-compress/)
 [![Build Status](https://travis-ci.org/fancy-lottie/lottie-compress.svg?branch=master)](https://app.travis-ci.com/github/weiesky)
 
@@ -16,7 +18,7 @@ import LottieCompress from 'lottie-compress';
 
 interface IOptions {
   quality: [number, number]; // [0.55, 0.75];
-  traceformInto?: string, // 'png'，'webp'，'avif'
+  traceformInto?: string, // 'pngMixWebp', 'png', 'webp', 'avif'
   tinypngKey?: string;  // tinypng api key
 }
 
@@ -29,8 +31,8 @@ interface IOptions {
 ## Options
 
 - `lottieJson` Lottie file json data, Support the json data or string.
-- `options` quality, traceformInto, tinypngKey
-
+- `options` quality (compression rate), traceformInto (image type conversion), tinypngKey (use tinypng's api, just enter the key)
+- `traceformInto` Considering that most terminal machines now support the webp format, the author recommends using the webp format. However, in actual tests, since the algorithm of webp is not always better than png, and considering that the parsing cost of webp in the terminal may be greater than png, there is a special definition "pngMixWebp" for forced type conversion. In the definition of "pngMixWebp", lottie-compress will automatically choose the final output png or webp, and finally ensure that the output volume is optimal.
 
 ## Description
 
