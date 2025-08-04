@@ -5,6 +5,7 @@ import * as assert from 'assert';
 import tinify from 'tinify';
 import * as sharp from 'sharp';
 import { resetImageBlank } from './imageblank';
+import { resetImageSize } from './imageresize';
 
 // 洛丽塔设置的6档次图片优化参数，供参考用
 // const enumQualityLevel = {
@@ -21,6 +22,7 @@ interface IOptions {
   traceformInto?: string, // png，webp，avif 目前主要支持这三个类型互相转换
   tinypngKey?: string;  // tinypng api key，如果有那么会使用 API 来压缩图片
   imageBlank?: boolean; // true 为需要对图片做透明区域裁剪，注意网络传输在特殊情况下，布尔值是失效的，所以不推荐用false，更推荐该属性不设置。
+  imageResize?: boolean; // true 为需要对超标准大小的尺寸进行缩小，注意网络传输在特殊情况下，布尔值是失效的，所以不推荐用false，更推荐该属性不设置。
 }
 
 export default class LottieCompress {
@@ -58,6 +60,7 @@ export default class LottieCompress {
    * execute
    */
   public async execute() {
+    await this.imageResize(); // 图片尺寸的释放
     await this.imageBlank(); // 清除图片的空白区域
     await this.miniBase64(); // 压缩图片
     return this.getMiniAttr(); // 压缩冗余属性 & 提高兼容性
@@ -67,6 +70,14 @@ export default class LottieCompress {
     if (this.options.imageBlank) {
       this.lottieJson = await resetImageBlank(this.fixAttrIndIsUndefined(this.lottieJson));
     }
+    return null;
+  }
+
+  public async imageResize() {
+    if (this.options.imageResize) {
+      this.lottieJson = await resetImageSize(this.lottieJson);
+    }
+    return null;
   }
 
   /**
