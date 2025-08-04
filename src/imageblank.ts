@@ -70,7 +70,7 @@ async function hasImageBlankForLint(lottieFile, params = {}) {
 
   // 测绘出图片空白区域
   const Promises = images.map(async item => getImageBlankArea(item, params));
-  let resultImages = await Promise.all(Promises);
+  let resultImages: any = await Promise.all(Promises);
 
   // 清洗不必要优化的图片
   resultImages = resultImages.filter(it => it);
@@ -128,7 +128,7 @@ async function hasImageBlank(lottieFile, params = {}) {
 
   // 测绘出图片空白区域
   const Promises = images.map(async item => getImageBlankArea(item, params));
-  let resultImages = await Promise.all(Promises);
+  let resultImages :any = await Promise.all(Promises);
 
   // 清洗不必要优化的图片
   resultImages = resultImages.filter(it => it);
@@ -405,7 +405,7 @@ async function resetImageBlank(lottieFile, params = {}) {
 
   // 测绘出图片空白区域
   let Promises = images.map(async item => getImageBlankArea(item, params));
-  let resultImages = await Promise.all(Promises);
+  let resultImages: any = await Promise.all(Promises);
 
   // 清洗不必要优化的图片
   resultImages = resultImages.filter(it => it);

@@ -1,10 +1,6 @@
 {
   "name": "lottie-compress",
-<<<<<<< HEAD
-  "version": "1.2.4",
-=======
   "version": "1.3.0",
->>>>>>> c1e964d (feat: 增加图片空白区域剔除的能力，默认不开启，开启可以让终端运行时内存利用率跟高)
   "description": "lottie compress",
   "main": "lib/index.js",
   "files": [
@@ -26,10 +22,7 @@
     "lottie optimization"
   ],
   "author": "chenpx976",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fancy-lottie/lottie-compress"
-  },
+  "repository": "git@github.com:fancy-lottie/lottie-compress.git",
   "contributors": [
     {
       "name": "chenpx976",

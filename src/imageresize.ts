@@ -337,9 +337,9 @@ async function resetImageSize(lottieFile, Threshold = 95) {
     }
   });
   const results = await Promise.all(newImages);
-  newLottieFile.assets = newLottieFile.assets.map(item => {
+  newLottieFile.assets = newLottieFile.assets.map((item: any) => {
     let newItem = item;
-    results.forEach(image => {
+    results.forEach((image: any) => {
       if (image && item.id === image.id) {
         newItem = image;
       }
