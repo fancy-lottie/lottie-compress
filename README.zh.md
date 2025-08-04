@@ -1,3 +1,5 @@
+[English](README.md)
+
 [![NPM](https://nodei.co/npm/lottie-compress.png)](https://nodei.co/npm/lottie-compress/)
 [![Build Status](https://travis-ci.org/fancy-lottie/lottie-compress.svg?branch=master)](https://app.travis-ci.com/github/weiesky)
 
@@ -16,7 +18,7 @@ import LottieCompress from 'lottie-compress';
 
 interface IOptions {
   quality: [number, number]; // [0.55, 0.75];
-  traceformInto?: string, // 'png'，'webp'，'avif'
+  traceformInto?: string, // 'pngMixWebp', 'png', 'webp', 'avif'
   tinypngKey?: string;  // tinypng api key
 }
 
@@ -29,7 +31,8 @@ interface IOptions {
 ## 参数设置
 
 - `lottieJson` 主参数可以是lottie的json，页可以是lottie的jsonString
-- `options` quality（压缩率）, traceformInto（图片类型转换）, tinypngKey（用tinypng的api，输入key即可，但更推荐使用webp格式，以及期待一下不远的将来avif格式能够全兼容）
+- `options` quality（压缩率）, traceformInto（图片类型转换）, tinypngKey（用tinypng的api，输入key即可）
+  - `traceformInto` 考虑到现在绝大部分的终端机器已经支持webp格式，随意作者更推荐使用webp格式。但实际测试下来，由于webp的算法不总是优于png，同时考虑到webp在终端的解析成本可能大于png，所以强制类型转化存在特殊的定义“pngMixWebp”，在“pngMixWebp”的定义中，lottie-compress会自动选择最终输出的png还是webp，最终保证输出的体积是最优的。
 
 
 ## 相关描述
@@ -41,7 +44,7 @@ lottie-compress是lottie体积压缩的工具库。内部功能包含lottie的�
 
 经验分享：
 1. lottie-compress在纯矢量的文件中，可以优化字符串的大小，但按照zip的口径计算，压缩率大概只有5%～15%，个人觉得矢量文件没有必要，也不用压缩；
-2. lottie-compress的压缩主要收益来自base64的图片，提供png、webp、avif、jpeg的压缩，目前推荐用webp的压缩模式，该模式可以让AE导出的png体积缩小到20%～30%，收益非常大！
+2. lottie-compress的压缩主要收益来自base64的图片，提供png、webp、avif、jpeg的压缩，目前推荐用pngMixWebp的压缩模式，该模式可以让AE导出的png体积缩小到20%～30%，收益非常大！
 3. 实际应用中，会遇到性能问题，可以考虑使用lottie-lint做检测（洛丽塔提供了该能力）；
 
 洛丽塔：https://design.alipay.com/lolita 
