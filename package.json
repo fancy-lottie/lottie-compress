@@ -22,10 +22,7 @@
     "lottie optimization"
   ],
   "author": "chenpx976",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fancy-lottie/lottie-compress"
-  },
+  "repository": "git@github.com:fancy-lottie/lottie-compress.git",
   "contributors": [
     {
       "name": "chenpx976",
